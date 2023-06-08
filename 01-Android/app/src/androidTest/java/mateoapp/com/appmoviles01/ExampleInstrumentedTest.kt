@@ -1,4 +1,4 @@
-package com.example.movilessoftware2023a_01
+package mateoapp.com.appmoviles01
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.movilessoftware2023a_01", appContext.packageName)
+        assertEquals("mateoapp.com.appmoviles01", appContext.packageName)
     }
 }

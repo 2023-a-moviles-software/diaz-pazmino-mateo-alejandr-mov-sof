@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493745516878",
+    "project_id": "a-moviles-software-d3413",
+    "storage_bucket": "a-moviles-software-d3413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493745516878:android:fa510650df9d912609ee1f",
+        "android_client_info": {
+          "package_name": "mateoapp.com.appmoviles01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1e2BPau95vCgdpnsfHqyLvygM_PHFMqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
