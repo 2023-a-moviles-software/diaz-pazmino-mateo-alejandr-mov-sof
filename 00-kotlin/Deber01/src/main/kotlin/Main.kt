@@ -1,3 +1,4 @@
+import DAO.GenreDAO
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -23,12 +24,20 @@ fun main(args: Array<String>) {
 
 
     //createJsonData()
+
     /*
     val movie1 = Movie("This is Spinal Tap",82, LocalDate.of(1984,9,8),
         0.92,false)
     val movies : ArrayList<Movie> = ArrayList()
     movies.add(movie1)
-    val comedy = Genre("comedy",4.6,150,"Juan", movies)
+    val genre1 = Genre("comedy",4.6,150,"Juan", movies)
+    val genre2 = Genre("action",4.6,150,"Juan", movies)
+    var genres: ArrayList<Genre> = ArrayList()
+    genres.add(genre1)
+    genres.add(genre2)
+    GenreDAO.create(genres)*/
+
+    /*
     var node: JsonNode = toJson(comedy)
     println(jsonToString(node))
     val output: Writer
@@ -36,7 +45,7 @@ fun main(args: Array<String>) {
     output = BufferedWriter(FileWriter(file))
     output.write(jsonToString(node))
     output.close()*/
-
+/*
     //fun readFileDirectlyAsText(fileName: String): String= File(fileName).readText(Charsets.UTF_8)
     var jsonleido = File("D:\\Documentos\\EPN\\Aplicaciones_Moviles\\jsonPrueba14996115306133117007.json").readText()
     println(jsonleido)
@@ -46,7 +55,14 @@ fun main(args: Array<String>) {
     var genero:Genre=fromJson(node,Genre::class.java)
     println(genero.name)
     println(genero.averangeRating)
-    println(genero.movies?.get(0)?.release)
+    println(genero.movies?.get(0)?.release)*/
+
+    //Get
+
+    var generos = GenreDAO.get()
+    println(generos.get(0).name)
+    println(generos.get(1).name)
+
 }
 
 fun getDefaultObjectMapper():ObjectMapper{
@@ -64,7 +80,7 @@ fun <A>  fromJson(node:JsonNode, clazz:Class<A>): A {
     return objectMapper.treeToValue(node,clazz)
 }
 
-fun toJson(a: Genre):JsonNode{
+fun toJson(a: Any):JsonNode{
     return objectMapper.valueToTree(a)
 }
 

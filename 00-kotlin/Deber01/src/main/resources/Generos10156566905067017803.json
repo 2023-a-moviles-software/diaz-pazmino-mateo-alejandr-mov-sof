@@ -1,0 +1,25 @@
+[ {
+  "name" : "comedy",
+  "averangeRating" : 4.6,
+  "averangeDuration" : 150,
+  "featuredDirector" : "Juan",
+  "movies" : [ {
+    "name" : "This is Spinal Tap",
+    "runtime" : 82,
+    "release" : [ 1984, 9, 8 ],
+    "audienceScore" : 0.92,
+    "hasOscar" : false
+  } ]
+}, {
+  "name" : "action",
+  "averangeRating" : 4.6,
+  "averangeDuration" : 150,
+  "featuredDirector" : "Juan",
+  "movies" : [ {
+    "name" : "This is Spinal Tap",
+    "runtime" : 82,
+    "release" : [ 1984, 9, 8 ],
+    "audienceScore" : 0.92,
+    "hasOscar" : false
+  } ]
+} ]
