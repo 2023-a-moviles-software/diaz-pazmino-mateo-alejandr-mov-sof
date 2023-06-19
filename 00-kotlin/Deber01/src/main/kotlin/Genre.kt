@@ -1,9 +1,16 @@
+class Genre{
+    var name:String? = null
+    var averangeRating: Double = 0.0
+    var averangeDuration: Int = 0
+    var featuredDirector: String? = null
+    var movies: ArrayList<Movie>? = null
+    constructor(name:String,averangeRating: Double,averangeDuration: Int,featuredDirector: String,movies: ArrayList<Movie>){
+        this.name = name
+        this.averangeRating = averangeRating
+        this.averangeDuration = averangeDuration
+        this.featuredDirector = featuredDirector
+        this.movies = movies
+    }
 
-
-data class Genre(
-    var name:String,
-    var averangeRating: Double,
-    var averangeDuration: Int,
-    var featuredDirector: String,
-    var movies: ArrayList<Movie>
-)
+    private constructor(){}
+}

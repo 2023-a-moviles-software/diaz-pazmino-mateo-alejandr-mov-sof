@@ -1,11 +1,17 @@
-import com.fasterxml.jackson.module.kotlin.jsonMapper
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
 import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
+import Genre
+import com.fasterxml.jackson.databind.DeserializationFeature
 
+var objectMapper: ObjectMapper = getDefaultObjectMapper()
 fun main(args: Array<String>) {
     /*
     val comedy = Genre("comedy",4.6,150,"Juan", mutableListOf())
@@ -15,7 +21,57 @@ fun main(args: Array<String>) {
     val genres = jsonMapper().writeValueAsString(comedy)
     print(genres)*/
 
-    createJsonData()
+
+    //createJsonData()
+    /*
+    val movie1 = Movie("This is Spinal Tap",82, LocalDate.of(1984,9,8),
+        0.92,false)
+    val movies : ArrayList<Movie> = ArrayList()
+    movies.add(movie1)
+    val comedy = Genre("comedy",4.6,150,"Juan", movies)
+    var node: JsonNode = toJson(comedy)
+    println(jsonToString(node))
+    val output: Writer
+    val file =  File.createTempFile("jsonPrueba",".json",File("D:\\Documentos\\EPN\\Aplicaciones_Moviles"))
+    output = BufferedWriter(FileWriter(file))
+    output.write(jsonToString(node))
+    output.close()*/
+
+    //fun readFileDirectlyAsText(fileName: String): String= File(fileName).readText(Charsets.UTF_8)
+    var jsonleido = File("D:\\Documentos\\EPN\\Aplicaciones_Moviles\\jsonPrueba14996115306133117007.json").readText()
+    println(jsonleido)
+    var node = parse(jsonleido)
+    //println(node.get("movies"))
+
+    var genero:Genre=fromJson(node,Genre::class.java)
+    println(genero.name)
+    println(genero.averangeRating)
+    println(genero.movies?.get(0)?.release)
+}
+
+fun getDefaultObjectMapper():ObjectMapper{
+    var defaultObjectMapper = ObjectMapper()
+    defaultObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
+    defaultObjectMapper.registerModule(JavaTimeModule())
+    return defaultObjectMapper
+}
+
+fun parse(src:String):JsonNode{
+    return objectMapper.readTree(src)
+}
+
+fun <A>  fromJson(node:JsonNode, clazz:Class<A>): A {
+    return objectMapper.treeToValue(node,clazz)
+}
+
+fun toJson(a: Genre):JsonNode{
+    return objectMapper.valueToTree(a)
+}
+
+fun jsonToString(node:JsonNode):String{
+    var objectWriter = objectMapper.writer()
+    objectWriter = objectWriter.with(SerializationFeature.INDENT_OUTPUT)
+    return objectWriter.writeValueAsString(node)
 }
 
 fun createJsonData(){
@@ -34,8 +90,7 @@ fun createJsonData(){
     json.put("movies",JSONArray().putAll(comedy.movies))
 
     val output: Writer
-    val file =  File.createTempFile("jsonPrueba",".json",File("D:\\Documentos\\EPN\\Aplicaciones Moviles")
-    )
+    val file =  File.createTempFile("jsonPrueba",".json",File("D:\\Documentos\\EPN\\Aplicaciones_Moviles"))
     output = BufferedWriter(FileWriter(file))
     output.write(json.toString())
     output.close()
