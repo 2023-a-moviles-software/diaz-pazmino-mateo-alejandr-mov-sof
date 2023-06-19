@@ -1,4 +1,9 @@
+import java.util.Random
+import javax.print.attribute.IntegerSyntax
+import kotlin.time.times
+
 class Genre{
+    var genreId: Int = ((Math.random()*999)+1).toInt()
     var name:String? = null
     var averangeRating: Double = 0.0
     var averangeDuration: Int = 0
@@ -13,4 +18,5 @@ class Genre{
     }
 
     private constructor(){}
+
 }

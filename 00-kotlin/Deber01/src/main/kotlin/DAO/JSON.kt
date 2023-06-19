@@ -35,13 +35,13 @@ object JSON {
 
     fun saveJson(node: JsonNode){
         val output: Writer
-        val file =  File.createTempFile("Generos",".json", File("src/main/resources"))
+        val file =  File("src/main/resources/Generos_Peliculas.json")
         output = BufferedWriter(FileWriter(file))
         output.write(jsonToString(node))
         output.close()
     }
     fun loadJson():JsonNode{
-        var jsonReaded = File("src/main/resources/Generos10156566905067017803.json").readText()
+        var jsonReaded = File("src/main/resources/Generos_Peliculas.json").readText()
         return parse(jsonReaded)
     }
 

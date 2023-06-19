@@ -7,11 +7,29 @@ object GenreDAO {
         var node = JSON.toJson(genres)
         JSON.saveJson(node)
     }
-    fun delete(){}
-    fun update(){}
+    fun delete(genreId:Int,genres:ArrayList<Genre>){
+        val index = getIndexById(genreId, genres)
+        genres.removeAt(index)
+        var node = JSON.toJson(genres)
+        JSON.saveJson(node)
+    }
+    fun update(genreId:Int,genres:ArrayList<Genre>,genreUpdated:Genre){
+        val index = getIndexById(genreId, genres)
+        genres.set(index,genreUpdated)
+        var node = JSON.toJson(genres)
+        JSON.saveJson(node)
+    }
     fun get():ArrayList<Genre>{
         var node = JSON.loadJson()
         return JSON.fromJson(node,Genre::class.java)
+    }
+
+    private fun getIndexById(genreId:Int,genres:ArrayList<Genre>):Int{
+        genres.forEachIndexed { index:Int, genre:Genre ->
+            if (genre.genreId==genreId)
+                return index
+        }
+        return 0
     }
 
 }

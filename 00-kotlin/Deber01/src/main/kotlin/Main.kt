@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
 
     //createJsonData()
 
-    /*
+/*
     val movie1 = Movie("This is Spinal Tap",82, LocalDate.of(1984,9,8),
         0.92,false)
     val movies : ArrayList<Movie> = ArrayList()
@@ -35,8 +35,8 @@ fun main(args: Array<String>) {
     var genres: ArrayList<Genre> = ArrayList()
     genres.add(genre1)
     genres.add(genre2)
-    GenreDAO.create(genres)*/
-
+    GenreDAO.create(genres)
+*/
     /*
     var node: JsonNode = toJson(comedy)
     println(jsonToString(node))
@@ -60,8 +60,8 @@ fun main(args: Array<String>) {
     //Get
 
     var generos = GenreDAO.get()
-    println(generos.get(0).name)
-    println(generos.get(1).name)
+    println(generos.get(0).genreId)
+    println(generos.get(1).genreId)
 
 }
 

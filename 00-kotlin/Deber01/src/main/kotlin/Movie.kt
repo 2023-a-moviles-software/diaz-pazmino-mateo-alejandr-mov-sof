@@ -1,6 +1,7 @@
 import java.time.LocalDate
 
 class Movie {
+    var movieId: Int = ((Math.random()*999)+1).toInt()
     var name: String? = null
     var runtime: Int = 0
     var release: LocalDate? = null
