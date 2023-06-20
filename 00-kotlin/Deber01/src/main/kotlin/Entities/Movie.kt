@@ -1,3 +1,5 @@
+package Entities
+
 import java.time.LocalDate
 
 class Movie {

@@ -1,6 +1,4 @@
-import java.util.Random
-import javax.print.attribute.IntegerSyntax
-import kotlin.time.times
+package Entities
 
 class Genre{
     var genreId: Int = ((Math.random()*999)+1).toInt()
