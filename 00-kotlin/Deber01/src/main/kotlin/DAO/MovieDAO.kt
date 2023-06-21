@@ -8,15 +8,20 @@ object MovieDAO {
         genre.movies?.add(movie)
         return genre
     }
-    fun delete(genre: Genre, movieId:Int): Genre {
-        var index = genre.movies?.let { getIndexById(movieId, it) }
-        if (index != null) {
-            genre.movies?.removeAt(index)
+    fun delete(genres: ArrayList<Genre>, movieId:Int):ArrayList<Genre> {
+        var indexMovie:Int = -1
+        var indexGenre:Int = -1
+        genres.forEachIndexed { index:Int, genre ->
+            var indexObtained = genre.movies?.let { getIndexById(movieId, it) }!!
+            if (indexObtained>=0) {
+                indexMovie = indexObtained
+                indexGenre = index
+            }
         }
-        return genre
-    }
-    fun getByGenre(genre: Genre): ArrayList<Movie>? {
-        return genre.movies
+        if (indexMovie>=0 && indexGenre>=0){
+            genres[indexGenre].movies?.removeAt(indexMovie)
+        }
+        return genres
     }
     fun getAll(genres:ArrayList<Genre>):ArrayList<Movie>{
         var movies:ArrayList<Movie> = ArrayList()
@@ -25,12 +30,20 @@ object MovieDAO {
         }
         return movies
     }
-    fun update(genre: Genre, movieId:Int, movieUpdated: Movie): Genre {
-        var index = genre.movies?.let { getIndexById(movieId, it) }
-        if (index != null) {
-            genre.movies?.set(index,movieUpdated)
+    fun update(genres:ArrayList<Genre>, movieId:Int, movieUpdated: Movie):ArrayList<Genre> {
+        var indexMovie:Int = -1
+        var indexGenre:Int = -1
+        genres.forEachIndexed { index:Int, genre ->
+            var indexObtained = genre.movies?.let { getIndexById(movieId, it) }!!
+            if (indexObtained>=0) {
+                indexMovie = indexObtained
+                indexGenre = index
+            }
         }
-        return genre
+        if (indexMovie>=0 && indexGenre>=0){
+            genres[indexGenre].movies?.set(indexMovie,movieUpdated)
+        }
+        return genres
     }
 
     private fun getIndexById(movieId:Int, movies:ArrayList<Movie>):Int{

@@ -7,15 +7,14 @@ object GenreDAO {
         var node = JSON.toJson(genres)
         JSON.saveJson(node)
     }
-    fun delete(genreId:Int,genres:ArrayList<Genre>){
-        val index = getIndexById(genreId, genres)
-        genres.removeAt(index)
+    fun delete(genreIndex:Int,genres:ArrayList<Genre>){
+        genres.removeAt(genreIndex)
         var node = JSON.toJson(genres)
         JSON.saveJson(node)
     }
-    fun update(genreId:Int, genres:ArrayList<Genre>, genreUpdated: Genre){
-        val index = getIndexById(genreId, genres)
-        genres.set(index,genreUpdated)
+    fun update(genreIndex:Int, genres:ArrayList<Genre>, genreUpdated: Genre){
+        //val index = getIndexById(genre, genres)
+        genres.set(genreIndex,genreUpdated)
         var node = JSON.toJson(genres)
         JSON.saveJson(node)
     }
@@ -24,17 +23,8 @@ object GenreDAO {
         return JSON.fromJson(node, Genre::class.java)
     }
 
-    fun getByID(genreId:Int,genres:ArrayList<Genre>): Genre {
-        val index = getIndexById(genreId, genres)
-        return genres[index]
-    }
-
-    private fun getIndexById(genreId:Int,genres:ArrayList<Genre>):Int{
-        genres.forEachIndexed { index:Int, genre: Genre ->
-            if (genre.genreId==genreId)
-                return index
-        }
-        return -1
+    fun getByIndex(genreIndex:Int,genres:ArrayList<Genre>): Genre {
+        return genres[genreIndex]
     }
 
 }

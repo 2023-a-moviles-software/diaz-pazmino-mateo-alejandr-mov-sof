@@ -1,54 +1,36 @@
+import Controllers.GenreController
 import DAO.GenreDAO
+import DAO.MovieDAO
+import java.util.Scanner
 
 
 fun main(args: Array<String>) {
-    /*
-    val comedy = Entities.Genre("comedy",4.6,150,"Juan", mutableListOf())
-    val movie1 = Entities.Movie("This is Spinal Tap",82,LocalDate.of(1984,9,8),
-        0.92,false,comedy)
-    comedy.movies.add(movie1)
-    val genres = jsonMapper().writeValueAsString(comedy)
-    print(genres)*/
-
-
-    //createJsonData()
-
-/*
-    val movie1 = Entities.Movie("This is Spinal Tap",82, LocalDate.of(1984,9,8),
-        0.92,false)
-    val movies : ArrayList<Entities.Movie> = ArrayList()
-    movies.add(movie1)
-    val genre1 = Entities.Genre("comedy",4.6,150,"Juan", movies)
-    val genre2 = Entities.Genre("action",4.6,150,"Juan", movies)
-    var genres: ArrayList<Entities.Genre> = ArrayList()
-    genres.add(genre1)
-    genres.add(genre2)
-    GenreDAO.create(genres)
-*/
-    /*
-    var node: JsonNode = toJson(comedy)
-    println(jsonToString(node))
-    val output: Writer
-    val file =  File.createTempFile("jsonPrueba",".json",File("D:\\Documentos\\EPN\\Aplicaciones_Moviles"))
-    output = BufferedWriter(FileWriter(file))
-    output.write(jsonToString(node))
-    output.close()*/
-/*
-    //fun readFileDirectlyAsText(fileName: String): String= File(fileName).readText(Charsets.UTF_8)
-    var jsonleido = File("D:\\Documentos\\EPN\\Aplicaciones_Moviles\\jsonPrueba14996115306133117007.json").readText()
-    println(jsonleido)
-    var node = parse(jsonleido)
-    //println(node.get("movies"))
-
-    var genero:Entities.Genre=fromJson(node,Entities.Genre::class.java)
-    println(genero.name)
-    println(genero.averangeRating)
-    println(genero.movies?.get(0)?.release)*/
-
-    //Get
-
-    var generos = GenreDAO.get()
-    println(generos.get(0).genreId)
-    println(generos.get(1).genreId)
+    var option = 10
+    val input = Scanner(System.`in`)
+    var genreController: GenreController = GenreController()
+    do {
+        println("MENU\n1.Mostrar generos y películas\n2.Mostrar generos\n3.Mostrar películas\n4.Agregar Genero\n" +
+                "5.Agregar Película\n6.Editar genero\n7.Editar película\n8.Eliminar Genero\n9.Eliminar película\n" +
+                "10.Salir")
+        print("Ingrese una opción: ")
+        option = input.nextInt()
+        when(option){
+            1 -> genreController.showAllGenres()
+            2 -> genreController.showOnlyGenres()
+            3 -> genreController.showMoviesByGenre()
+            4 -> genreController.createGenre()
+            5 -> genreController.addMovieToGenre()
+            6 -> genreController.editGenre()
+            7 -> genreController.editMovies()
+            8 -> genreController.deleteGenre()
+            9 -> genreController.deleteMovie()
+            10 -> continue
+            else -> println("Ingresa un número del 1 al 10")
+        }
+        if(option!=10){
+            print("Presiona ENTER para continuar")
+            var wait = Scanner(System.`in`).nextLine()
+        }
+    }while (option!=10)
 
 }

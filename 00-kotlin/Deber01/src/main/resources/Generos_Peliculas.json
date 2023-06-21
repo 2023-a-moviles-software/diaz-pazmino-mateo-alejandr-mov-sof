@@ -1,27 +1,43 @@
 [ {
-  "genreId" : 945,
-  "name" : "comedy",
-  "averangeRating" : 4.6,
-  "averangeDuration" : 150,
-  "featuredDirector" : "Juan",
+  "genreId" : 200,
+  "name" : "Thriller",
+  "averangeRating" : 8.2,
+  "averangeDuration" : 115,
+  "featuredDirector" : "David Fincher",
   "movies" : [ {
-    "name" : "This is Spinal Tap",
-    "runtime" : 82,
-    "release" : [ 1984, 9, 8 ],
-    "audienceScore" : 0.92,
+    "movieId" : 626,
+    "name" : "Se7en",
+    "runtime" : 127,
+    "release" : [ 1995, 9, 22 ],
+    "audienceScore" : 8.6,
+    "hasOscar" : false
+  }, {
+    "movieId" : 49,
+    "name" : "Gone Girl",
+    "runtime" : 149,
+    "release" : [ 2014, 10, 3 ],
+    "audienceScore" : 8.1,
     "hasOscar" : false
   } ]
 }, {
-  "genreId" : 457,
-  "name" : "action",
-  "averangeRating" : 4.6,
-  "averangeDuration" : 150,
-  "featuredDirector" : "Juan",
+  "genreId" : 680,
+  "name" : "Fantasia",
+  "averangeRating" : 7.75,
+  "averangeDuration" : 125,
+  "featuredDirector" : "Guillermo del Toro",
   "movies" : [ {
-    "name" : "This is Spinal Tap",
-    "runtime" : 82,
-    "release" : [ 1984, 9, 8 ],
-    "audienceScore" : 0.92,
-    "hasOscar" : false
+    "movieId" : 649,
+    "name" : "El laberinto el fauno",
+    "runtime" : 118,
+    "release" : [ 2006, 12, 28 ],
+    "audienceScore" : 8.2,
+    "hasOscar" : true
+  }, {
+    "movieId" : 892,
+    "name" : "The Shape of Water",
+    "runtime" : 123,
+    "release" : [ 2017, 12, 22 ],
+    "audienceScore" : 7.3,
+    "hasOscar" : true
   } ]
 } ]
