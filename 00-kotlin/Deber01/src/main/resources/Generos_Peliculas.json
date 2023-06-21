@@ -1,29 +1,8 @@
 [ {
-  "genreId" : 200,
-  "name" : "Thriller",
-  "averangeRating" : 8.2,
-  "averangeDuration" : 115,
-  "featuredDirector" : "David Fincher",
-  "movies" : [ {
-    "movieId" : 626,
-    "name" : "Se7en",
-    "runtime" : 127,
-    "release" : [ 1995, 9, 22 ],
-    "audienceScore" : 8.6,
-    "hasOscar" : false
-  }, {
-    "movieId" : 49,
-    "name" : "Gone Girl",
-    "runtime" : 149,
-    "release" : [ 2014, 10, 3 ],
-    "audienceScore" : 8.1,
-    "hasOscar" : false
-  } ]
-}, {
   "genreId" : 680,
   "name" : "Fantasia",
   "averangeRating" : 7.75,
-  "averangeDuration" : 125,
+  "averangeDuration" : 120,
   "featuredDirector" : "Guillermo del Toro",
   "movies" : [ {
     "movieId" : 649,
@@ -36,8 +15,22 @@
     "movieId" : 892,
     "name" : "The Shape of Water",
     "runtime" : 123,
-    "release" : [ 2017, 12, 22 ],
+    "release" : [ 2017, 12, 20 ],
     "audienceScore" : 7.3,
     "hasOscar" : true
+  } ]
+}, {
+  "genreId" : 395,
+  "name" : "Comedia romantica",
+  "averangeRating" : 7.0,
+  "averangeDuration" : 105,
+  "featuredDirector" : "Richard Curtis",
+  "movies" : [ {
+    "movieId" : 605,
+    "name" : "Love Actually",
+    "runtime" : 135,
+    "release" : [ 2003, 12, 15 ],
+    "audienceScore" : 7.6,
+    "hasOscar" : false
   } ]
 } ]
