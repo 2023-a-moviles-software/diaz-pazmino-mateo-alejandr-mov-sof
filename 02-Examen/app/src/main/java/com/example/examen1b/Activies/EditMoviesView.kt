@@ -31,9 +31,14 @@ class EditMoviesView : AppCompatActivity() {
         fillFields()
         val updateButton = findViewById<Button>(R.id.btn_update_movie_edit)
         updateButton.setOnClickListener {
-            updateMovie()
-            clearFields()
-            showSnackbar("Película Editada")
+            if(checkFields()){
+                updateMovie()
+                clearFields()
+                showSnackbar("Película Editada")
+            }else{
+                showSnackbar("No se ha podido editar la Película")
+            }
+
         }
     }
 
@@ -98,6 +103,14 @@ class EditMoviesView : AppCompatActivity() {
     fun showSnackbar(text: String){
         Snackbar.make(findViewById(R.id.cl_movies_edit),text, Snackbar.LENGTH_LONG)
             .setAction("Action",null).show()
+    }
 
+    fun checkFields():Boolean{
+        return !(findViewById<TextView>(R.id.input_name_movie_edit).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_runtime_movie_edit).text.toString() == "" ||
+                dateButton?.text.toString() == "Fecha de Lanzamiento" ||
+                findViewById<TextView>(R.id.input_score_movie_edit).text.toString() == "" ||
+                (!findViewById<RadioButton>(R.id.rb_oscar_true_movie_edit).isChecked
+                        && !findViewById<RadioButton>(R.id.rb_oscar_false_movie_edit).isChecked))
     }
 }

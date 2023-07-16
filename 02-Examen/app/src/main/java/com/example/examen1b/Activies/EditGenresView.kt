@@ -16,9 +16,14 @@ class EditGenresView : AppCompatActivity() {
         fillTextsView(index)
         val updateButton = findViewById<Button>(R.id.btn_edit_genre)
         updateButton.setOnClickListener {
-            updateGenre(index)
-            clearFields()
-            showSnackbar("Genero Editado")
+            if(checkFields()){
+                updateGenre(index)
+                clearFields()
+                showSnackbar("Genero Editado")
+            }else{
+                showSnackbar("No se ha podido editar el genero ")
+            }
+
         }
     }
 
@@ -52,6 +57,12 @@ class EditGenresView : AppCompatActivity() {
     fun showSnackbar(text: String){
         Snackbar.make(findViewById(R.id.cl_genres_edit),text, Snackbar.LENGTH_LONG)
             .setAction("Action",null).show()
+    }
 
+    fun checkFields():Boolean{
+        return !(findViewById<TextView>(R.id.input_name_genre_edit).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_rating_genre_edit).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_duration_genre_edit).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_director_genre_edit).text.toString() == "")
     }
 }

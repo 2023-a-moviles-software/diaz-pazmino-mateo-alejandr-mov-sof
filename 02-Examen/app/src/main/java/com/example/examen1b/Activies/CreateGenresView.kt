@@ -14,9 +14,14 @@ class CreateGenresView : AppCompatActivity() {
         setContentView(R.layout.activity_create_genres_view)
         val createButton = findViewById<Button>(R.id.btn_crear_genero)
         createButton.setOnClickListener {
-            createGenre()
-            clearFields()
-            showSnackbar("Genero Creada")
+            if(checkFields()){
+                createGenre()
+                clearFields()
+                showSnackbar("Genero Creada")
+            }else{
+                showSnackbar("No se ha podido crear el Genero")
+            }
+
         }
     }
 
@@ -38,6 +43,12 @@ class CreateGenresView : AppCompatActivity() {
     fun showSnackbar(text: String){
         Snackbar.make(findViewById(R.id.cl_genres_new),text, Snackbar.LENGTH_LONG)
             .setAction("Action",null).show()
+    }
 
+    fun checkFields():Boolean{
+        return !(findViewById<TextView>(R.id.input_name_genre_new).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_rating_genre_new).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_duration_genre_new).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_director_genre_new).text.toString() == "")
     }
 }

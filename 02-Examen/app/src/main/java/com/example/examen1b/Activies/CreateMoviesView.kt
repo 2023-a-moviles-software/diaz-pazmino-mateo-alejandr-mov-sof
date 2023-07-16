@@ -26,9 +26,14 @@ class CreateMoviesView : AppCompatActivity() {
         dateButton = findViewById<Button>(R.id.btn_date_picker_new)
         val createMovieButton = findViewById<Button>(R.id.btn_create_movie_new)
         createMovieButton.setOnClickListener {
-            createMovie()
-            clearFields()
-            showSnackbar("Película Creada")
+            if(checkFields()){
+                createMovie()
+                clearFields()
+                showSnackbar("Película Creada")
+            }else{
+                showSnackbar("No se ha podido crear la Película")
+            }
+
         }
     }
 
@@ -93,5 +98,14 @@ class CreateMoviesView : AppCompatActivity() {
         Snackbar.make(findViewById(R.id.cl_movies_new),text, Snackbar.LENGTH_LONG)
             .setAction("Action",null).show()
 
+    }
+
+    fun checkFields():Boolean{
+        return !(findViewById<TextView>(R.id.input_name_movie_new).text.toString() == "" ||
+                findViewById<TextView>(R.id.input_runtime_movie_new).text.toString() == "" ||
+                dateButton?.text.toString() == "Fecha de Lanzamiento" ||
+                findViewById<TextView>(R.id.input_score_movie_new).text.toString() == "" ||
+                (!findViewById<RadioButton>(R.id.rb_oscar_true_movie_new).isChecked
+                        && !findViewById<RadioButton>(R.id.rb_oscar_false_movie_new).isChecked))
     }
 }
