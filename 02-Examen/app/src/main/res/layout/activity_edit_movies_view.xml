@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_movies_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activies.EditMoviesView">
+
+    <EditText
+        android:id="@+id/input_score_movie_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Calificación Audiencia"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintTop_toBottomOf="@+id/btn_date_picker_edit" />
+
+    <TextView
+        android:id="@+id/tv_has_oscar_movie_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="¿Ha ganado un premio Oscar?"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintTop_toBottomOf="@+id/input_score_movie_edit" />
+
+    <RadioGroup
+        android:layout_width="172dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_has_oscar_movie_edit">
+
+        <RadioButton
+            android:id="@+id/rb_oscar_true_movie_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Si"
+            tools:layout_editor_absoluteX="127dp"
+            tools:layout_editor_absoluteY="508dp" />
+
+        <RadioButton
+            android:id="@+id/rb_oscar_false_movie_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:translationX="115dp"
+            android:translationY="-45dp"
+            tools:layout_editor_absoluteX="234dp"
+            tools:layout_editor_absoluteY="508dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_update_movie_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="Actualizar"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintTop_toBottomOf="@+id/tv_has_oscar_movie_edit" />
+
+    <TextView
+        android:id="@+id/tv_titulo_edit_pelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Película"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
+
+
+    <EditText
+        android:id="@+id/input_name_movie_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Título Película"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_edit_pelicula" />
+
+    <EditText
+        android:id="@+id/input_runtime_movie_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Duración"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_pelicula"
+        app:layout_constraintTop_toBottomOf="@+id/input_name_movie_edit" />
+
+    <Button
+        android:id="@+id/btn_date_picker_edit"
+        style="?android:spinnerStyle"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="openDatePicker"
+        android:text="Fecha de Lanzamiento"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_runtime_movie_edit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

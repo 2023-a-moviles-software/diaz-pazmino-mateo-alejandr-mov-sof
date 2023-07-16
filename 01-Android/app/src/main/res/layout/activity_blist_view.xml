@@ -10,8 +10,8 @@
     <ListView
         android:layout_width="346dp"
         android:layout_height="469dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="94dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="79dp" />
 
     <Button
         android:id="@+id/btn_anadir_list_view"
