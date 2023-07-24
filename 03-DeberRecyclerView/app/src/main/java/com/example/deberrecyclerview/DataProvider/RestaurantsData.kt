@@ -21,16 +21,33 @@ class RestaurantsData {
             9.77, "https://images.rappi.com.ec/products/d56a5585-af93-468b-be6c-f2b3b51c955d-1650652605141.png?e=webp&d=511x511&q=85")
         )
 
+        val dishesKFC = arrayListOf(
+            Dish("Twister Para Dos","2 Twisters + 6 alitas picantes + 2 papas fritas pequeñas + 1 gaseosa 1l",
+            16.99,"https://images.rappi.com.ec/products/tmp137672077426014816932510309.png?e=webp&d=511x511&q=85"),
+            Dish("2 Sundaes","Dos sundaes, cada uno contiene helado soft de vainilla con tu topping favorito frutilla, mora, chocolate o manjar.",
+            3.99,"https://images.rappi.com.ec/products/tmp137672417066954243430079699.png?e=webp&d=511x511&q=85"),
+            Dish("12 Presas Kfc","12 Presas de pollo",19.99,
+            "https://images.rappi.com.ec/products/tmp137674048886411506653121277.png?e=webp&d=511x511&q=85"),
+            Dish("Festin Sin Igual","9 Presas de pollo + 1 papa frita grande y gratis gaseosa de 1l",
+            18.99,"https://images.rappi.com.ec/products/tmp1402865516673092335753004029.png?e=webp&d=511x511&q=85"),
+            Dish("Combo Ideal","3 Presas de pollo + 1 papa frita pequeña + 1 gaseosa 355ml",
+            7.25,"https://images.rappi.com.ec/products/tmp137675974165253594302564727.png?e=webp&d=511x511&q=85")
+        )
+
 
         val restaurantsList = arrayListOf(
-            Restaurant("Dunkin Donuts",41,1.79,
+            Restaurant("Dunkin Donuts",41,1.79,4.2,
         "https://images.rappi.com.ec/restaurants_background/dunk-1660258709533-1685118307644.jpg?e=webp&d=700x100&q=10",
         "https://images.rappi.com.ec/restaurants_logo/dunkimlogo-1649199034771-1685118306605.png?e=webp&d=10x10&q=10",
         dishesDunkin),
-            Restaurant("Inka Burger", 41,2.19,
+            Restaurant("Inka Burger", 41,2.19,4.4,
                 "https://images.rappi.com.ec/restaurants_background/inkaburger-1662580787171.jpg?e=webp&q=40&d=300x300",
             "https://images.rappi.com.ec/restaurants_logo/inka-logo-1611321923491-1613153127094.png?d=10x10&q=10&e=webp",
-            dishesInka)
+            dishesInka),
+            Restaurant("KFC",29,1.19,4.3,
+            "https://images.rappi.com.ec/restaurants_background/kfc-1660322660841.jpg?e=webp&q=40&d=300x300",
+            "https://images.rappi.com.ec/restaurants_logo/download-1-1614890195344.png?d=10x10&q=10&e=webp",
+            dishesKFC)
         )
 
     }
