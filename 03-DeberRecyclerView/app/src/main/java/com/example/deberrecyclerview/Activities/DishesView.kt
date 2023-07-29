@@ -1,16 +1,16 @@
-package com.example.deberrecyclerview
+package com.example.deberrecyclerview.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.deberrecyclerview.Adapter.DishAdapter
-import com.example.deberrecyclerview.Adapter.RestaurantAdapter
 import com.example.deberrecyclerview.DataProvider.RestaurantsData
-import com.example.deberrecyclerview.entities.Dish
+import com.example.deberrecyclerview.R
 import com.example.deberrecyclerview.entities.Restaurant
 
 class DishesView : AppCompatActivity() {
@@ -21,6 +21,8 @@ class DishesView : AppCompatActivity() {
         indexRestaurant = intent.getIntExtra("index",0)
         val restaurant = RestaurantsData.restaurantsList[indexRestaurant]
         fillRestaurantData(restaurant)
+        val arrowBack = findViewById<CardView>(R.id.cv_arrow_back)
+        arrowBack.setOnClickListener {  finish()}
         initRecyclerView()
     }
 
