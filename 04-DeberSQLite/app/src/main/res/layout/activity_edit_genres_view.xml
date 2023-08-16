@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_genres_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activies.EditGenresView">
+
+    <EditText
+        android:id="@+id/input_name_genre_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Nombre Genero"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_edit_genero" />
+
+    <EditText
+        android:id="@+id/input_rating_genre_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Calificación Promedio"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintTop_toBottomOf="@+id/input_name_genre_edit" />
+
+    <EditText
+        android:id="@+id/input_duration_genre_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Duración Promedio"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintTop_toBottomOf="@+id/input_rating_genre_edit" />
+
+    <Button
+        android:id="@+id/btn_edit_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Actualizar"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintTop_toBottomOf="@+id/input_director_genre_edit" />
+
+    <EditText
+        android:id="@+id/input_director_genre_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Director Destacado"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="@+id/tv_titulo_edit_genero"
+        app:layout_constraintTop_toBottomOf="@+id/input_duration_genre_edit" />
+
+    <TextView
+        android:id="@+id/tv_titulo_edit_genero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Genero"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.214" />
+</androidx.constraintlayout.widget.ConstraintLayout>
