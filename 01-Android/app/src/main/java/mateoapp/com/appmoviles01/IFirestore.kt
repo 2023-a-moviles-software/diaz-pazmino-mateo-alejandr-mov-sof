@@ -9,6 +9,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.Date
 
 class IFirestore : AppCompatActivity() {
     val quiery: Query? = null
@@ -31,6 +32,66 @@ class IFirestore : AppCompatActivity() {
         //Obtener Documento
         val botonObtenerDocumento = findViewById<Button>(R.id.btn_fs_odoc)
         botonObtenerDocumento.setOnClickListener { consultarDocumento(adaptador) }
+        //Consultar indice compuesto
+        val botonIndiceCompuesto = findViewById<Button>(R.id.btn_fs_ind_comp)
+        botonIndiceCompuesto.setOnClickListener { consultarIndiceCompuesto(adaptador) }
+        // Datos Prueba
+        val botonCrear = findViewById<Button>(R.id.btn_fs_crear)
+        botonCrear.setOnClickListener { crearEjemplo() }
+        // Eliminar
+        val botonEliminar = findViewById<Button>(R.id.btn_fs_eliminar)
+        botonEliminar.setOnClickListener { eliminar() }
+
+    }
+
+    private fun eliminar() {
+        val db = Firebase.firestore
+        val referenciaEjemploEstudiante = db.collection("ejemplo")
+        referenciaEjemploEstudiante
+            .document("12345678") //id usao para crear en la funcion "crearEjemmplo"
+            .delete() //Elimina
+            .addOnCompleteListener {  }
+            .addOnSuccessListener {  }
+
+    }
+
+    private fun crearEjemplo() {
+        val db = Firebase.firestore
+        val referenciasEjemploEstudiante = db.collection("ejemplo")
+        val identificador = Date().time
+        val datosEstudiante = hashMapOf(
+            "nombre" to "Adrian",
+            "graduado" to false,
+            "promedio" to 14.00,
+            "direccion" to hashMapOf(
+                "direccion" to "Mitad del mundo",
+                "numeroCalle" to 1234
+            ),
+            "materias" to listOf("web","moviles")
+        )
+        // Identificador quemado (Crear/Actualizar)
+        referenciasEjemploEstudiante.document("12345678").set(datosEstudiante)
+            .addOnSuccessListener {  }.addOnFailureListener {  }
+        // Identificador queumado pero autogenereado con Date().time (Crear/Actualizar)
+        referenciasEjemploEstudiante.document(identificador.toString()).set(datosEstudiante)
+            .addOnSuccessListener {  }.addOnFailureListener {  }
+        // Sin Identificador (Crear)
+        referenciasEjemploEstudiante.add(datosEstudiante).addOnCompleteListener {  }.addOnFailureListener {  }
+    }
+
+    private fun consultarIndiceCompuesto(adaptador: ArrayAdapter<ICities>) {
+        val db = Firebase.firestore
+        val citiesRefUnico = db.collection("cities")
+        citiesRefUnico.whereEqualTo("capital",false)
+            .whereLessThanOrEqualTo("population",4000000)
+            .orderBy("population",Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                for (ciudad in it){
+                    anadirAArregloCiudad(ciudad)
+                }
+                adaptador.notifyDataSetChanged()
+            }.addOnFailureListener {  }
     }
 
     private fun consultarDocumento(adaptador: ArrayAdapter<ICities>) {
