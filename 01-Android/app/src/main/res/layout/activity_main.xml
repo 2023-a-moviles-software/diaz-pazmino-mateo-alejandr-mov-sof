@@ -104,9 +104,9 @@
         android:id="@+id/btn_firestore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/btn_ir_intent_implicito"
-        app:layout_constraintEnd_toEndOf="@id/btn_ir_intent_implicito"
-        app:layout_constraintStart_toStartOf="@id/btn_ir_intent_implicito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         android:text="FIRESTORE"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

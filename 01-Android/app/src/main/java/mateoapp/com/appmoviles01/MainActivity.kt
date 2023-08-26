@@ -110,6 +110,8 @@ class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("nombre","Adrian")
         intentExplicito.putExtra("apellido","Eguez")
         intentExplicito.putExtra("edad",30)
+        intentExplicito.putExtra("entrenador",BEntrenador(1,"Adrian",
+            "Entrenador"))
         //enviamos intent con RESPUESTA
         //RECIBIMOS RESPUESTA
         callbackContenidoIntentExplicito.launch(intentExplicito)
