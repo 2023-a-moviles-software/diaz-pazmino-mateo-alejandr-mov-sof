@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "879735034407",
-    "project_id": "moviles-examen2b",
-    "storage_bucket": "moviles-examen2b.appspot.com"
+    "project_number": "113936483989",
+    "project_id": "moviles-examen2b-e7801",
+    "storage_bucket": "moviles-examen2b-e7801.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:879735034407:android:1c9b4c6172f137bb307402",
+        "mobilesdk_app_id": "1:113936483989:android:fb6d0153d5e16e519b7d9c",
         "android_client_info": {
           "package_name": "com.example.examen2b"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "879735034407-l90nc4duphrlfhlqgo93kusflpk4hrq3.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB6a2MzUqPWEOe6GKyMzO6etXB5QaRGZMw"
+          "current_key": "AIzaSyAfcwov-qgg-l2ZsyGhwOS6kce1J3e0KOs"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "879735034407-l90nc4duphrlfhlqgo93kusflpk4hrq3.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

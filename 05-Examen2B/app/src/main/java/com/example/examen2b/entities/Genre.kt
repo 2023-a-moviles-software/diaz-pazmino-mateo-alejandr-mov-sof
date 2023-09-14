@@ -1,7 +1,7 @@
 package com.example.examen2b.entities
 
 class Genre {
-    val genreId: Int = ((Math.random()*999)+1).toInt()
+    var genreId: Int = ((Math.random()*999)+1).toInt()
     var name:String? = null
     var averangeRating: Double = 0.0
     var averangeDuration: Int = 0
@@ -15,7 +15,15 @@ class Genre {
         this.movies = movies
     }
 
-    constructor(){}
+    constructor(genreId:Int,name:String,averangeRating: Double,averangeDuration: Int,featuredDirector: String){
+        this.genreId = genreId
+        this.name = name
+        this.averangeRating = averangeRating
+        this.averangeDuration = averangeDuration
+        this.featuredDirector = featuredDirector
+    }
+
+    constructor()
 
     override fun toString(): String {
         return "${name}"

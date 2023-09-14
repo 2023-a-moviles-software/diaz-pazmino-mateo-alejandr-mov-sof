@@ -4,9 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import com.example.examen2b.CRUD.CRUDGenres
+import androidx.lifecycle.lifecycleScope
+import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
+import com.example.examen2b.entities.Genre
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EditGenresView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,24 +33,32 @@ class EditGenresView : AppCompatActivity() {
         }
     }
 
-    fun fillTextsView(index:Int){
-        val genreSelected = CRUDGenres.get(index)
-        val nameText =  findViewById<TextView>(R.id.input_name_genre_edit)
-        nameText.setText(genreSelected.name)
-        val ratingText =  findViewById<TextView>(R.id.input_rating_genre_edit)
-        ratingText.setText(genreSelected.averangeRating.toString())
-        val durationText = findViewById<TextView>(R.id.input_duration_genre_edit)
-        durationText.setText(genreSelected.averangeDuration.toString())
-        val directorText = findViewById<TextView>(R.id.input_director_genre_edit)
-        directorText.setText(genreSelected.featuredDirector)
+    fun fillTextsView(id:Int){
+        var genreSelected = Genre()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val deferred = async { genreSelected = DataBase.tableGenre?.getById(id)!! }
+            val response = deferred.await()
+            withContext(Dispatchers.Main){
+                if(deferred.isCompleted){
+                    val nameText =  findViewById<TextView>(R.id.input_name_genre_edit)
+                    nameText.setText(genreSelected!!.name)
+                    val ratingText =  findViewById<TextView>(R.id.input_rating_genre_edit)
+                    ratingText.setText(genreSelected.averangeRating.toString())
+                    val durationText = findViewById<TextView>(R.id.input_duration_genre_edit)
+                    durationText.setText(genreSelected.averangeDuration.toString())
+                    val directorText = findViewById<TextView>(R.id.input_director_genre_edit)
+                    directorText.setText(genreSelected.featuredDirector)
+                }
+            }
+        }
     }
 
-    fun updateGenre(index: Int){
+    fun updateGenre(id: Int){
         val nameText =  findViewById<TextView>(R.id.input_name_genre_edit).text.toString()
         val ratingText =  findViewById<TextView>(R.id.input_rating_genre_edit).text.toString().toDouble()
         val durationText = findViewById<TextView>(R.id.input_duration_genre_edit).text.toString().toInt()
         val directorText = findViewById<TextView>(R.id.input_director_genre_edit).text.toString()
-        CRUDGenres.update(index,nameText,ratingText,durationText,directorText)
+        DataBase.tableGenre?.update(id,nameText,ratingText,durationText,directorText)
     }
 
     fun clearFields(){

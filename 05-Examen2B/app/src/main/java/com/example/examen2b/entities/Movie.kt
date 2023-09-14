@@ -3,7 +3,7 @@ package com.example.examen2b.entities
 import java.time.LocalDate
 
 class Movie {
-    val movieId: Int = ((Math.random()*999)+1).toInt()
+    var movieId: Int = ((Math.random()*999)+1).toInt()
     var name: String? = null
     var runtime: Int = 0
     var release: LocalDate? = null
@@ -11,6 +11,15 @@ class Movie {
     var hasOscar: Boolean? = null
 
     constructor(name: String, runtime: Int, release: LocalDate, audienceScore: Double, hasOscar: Boolean) {
+        this.name = name
+        this.runtime = runtime
+        this.release = release
+        this.audienceScore = audienceScore
+        this.hasOscar = hasOscar
+    }
+
+    constructor(movieId:Int,name: String, runtime: Int, release: LocalDate, audienceScore: Double, hasOscar: Boolean) {
+        this.movieId = movieId
         this.name = name
         this.runtime = runtime
         this.release = release

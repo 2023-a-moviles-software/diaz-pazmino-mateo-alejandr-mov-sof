@@ -1,4 +1,4 @@
-package com.example.examen2b
+package com.example.debersqlite
 
 import org.junit.Test
 

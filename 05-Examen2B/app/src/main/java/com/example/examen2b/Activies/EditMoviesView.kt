@@ -8,10 +8,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
-import com.example.examen2b.CRUD.CRUDMovies
+import androidx.lifecycle.lifecycleScope
+import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
 import com.example.examen2b.entities.Movie
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EditMoviesView : AppCompatActivity() {
     var datePickerDialog: DatePickerDialog? = null
@@ -25,10 +30,17 @@ class EditMoviesView : AppCompatActivity() {
         setContentView(R.layout.activity_edit_movies_view)
         indexGenre = intent.getIntExtra("indexGenre",0)
         indexMovie = intent.getIntExtra("indexMovie",0)
-        movieSelected = CRUDMovies.get(indexGenre,indexMovie)!!
-        initDatePicker()
-        dateButton = findViewById<Button>(R.id.btn_date_picker_edit)
-        fillFields()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val deferred = async { movieSelected = DataBase.tableMovie?.getById(indexMovie,indexGenre)!! }
+            val response = deferred.await()
+            withContext(Dispatchers.Main){
+                if(deferred.isCompleted){
+                    initDatePicker()
+                    dateButton = findViewById<Button>(R.id.btn_date_picker_edit)
+                    fillFields()
+                }
+            }
+        }
         val updateButton = findViewById<Button>(R.id.btn_update_movie_edit)
         updateButton.setOnClickListener {
             if(checkFields()){
@@ -72,7 +84,7 @@ class EditMoviesView : AppCompatActivity() {
         val dateText = dateButton?.text.toString()
         val scoreText = findViewById<TextView>(R.id.input_score_movie_edit).text.toString().toDouble()
         val hasOscarBool = getOscarField()
-        CRUDMovies.update(indexGenre,indexMovie,titleText,runtimeText,dateText,scoreText,hasOscarBool)
+        DataBase.tableMovie?.update(indexMovie,indexGenre,titleText,runtimeText,dateText,scoreText,hasOscarBool)
     }
 
     fun getOscarField():Boolean{

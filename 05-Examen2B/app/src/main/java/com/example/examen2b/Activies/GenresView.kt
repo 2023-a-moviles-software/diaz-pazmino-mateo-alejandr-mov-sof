@@ -11,26 +11,50 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
-import com.example.examen2b.CRUD.CRUDGenres
-import com.example.examen2b.DB.DataBaseMemory
+import androidx.lifecycle.lifecycleScope
+import com.example.examen2b.CRUD.GenreDAO
+import com.example.examen2b.CRUD.MovieDAO
+import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
+import com.example.examen2b.entities.Genre
+import com.google.android.gms.common.api.Response
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class GenresView : AppCompatActivity() {
-    val genresArray = DataBaseMemory.genresArray
+    var genresArray = arrayListOf<Genre>()
     var idSelectedItem = 0
+    lateinit var adapter: ArrayAdapter<Genre>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.genres_view)
-        val listView: ListView = findViewById<ListView>(R.id.lv_genres)
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,genresArray)
-        listView.adapter = adapter
-        listView.setOnItemClickListener { parent, view, position, id ->
-            showGenreInfo(position)
+
+        DataBase.tableGenre = GenreDAO()
+        DataBase.tableMovie = MovieDAO()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val deferred = async { genresArray = DataBase.tableGenre!!.getAll() }
+            val response = deferred.await()
+            withContext(Dispatchers.Main){
+                if (deferred.isCompleted){
+                    val listView: ListView = findViewById<ListView>(R.id.lv_genres)
+                    adapter = ArrayAdapter(this@GenresView,android.R.layout.simple_list_item_1,genresArray)
+                    listView.adapter = adapter
+                    listView.setOnItemClickListener { parent, view, position, id ->
+                        val item:Genre = listView.adapter.getItem(position) as Genre
+                        showGenreInfo(item.genreId)
+                    }
+                    adapter.notifyDataSetChanged()
+                    registerForContextMenu(listView)
+                }
+
+            }
         }
-        adapter.notifyDataSetChanged()
-        registerForContextMenu(listView)
+
+
         val createButton = findViewById<Button>(R.id.btn_crear)
         createButton.setOnClickListener { openActivity(CreateGenresView::class.java) }
     }
@@ -47,7 +71,7 @@ class GenresView : AppCompatActivity() {
                 return true
             }
             R.id.genre_eliminar -> {
-                CRUDGenres.delete(idSelectedItem)
+                DataBase.tableGenre?.delete(idSelectedItem)
                 showSnackbar("Genero Eliminado")
                 updateListView()
                 return true
@@ -69,8 +93,8 @@ class GenresView : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.genre_menu,menu)
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
-        val id = info.position
-        idSelectedItem = id
+        val genreItem:Genre = adapter.getItem(info.position) as Genre
+        idSelectedItem = genreItem.genreId
     }
 
     fun openActivity(
@@ -88,10 +112,20 @@ class GenresView : AppCompatActivity() {
 
     fun updateListView(){
         val listView: ListView = findViewById<ListView>(R.id.lv_genres)
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,genresArray)
-        listView.adapter = adapter
-        adapter.notifyDataSetChanged()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val deferred = async {  adapter = ArrayAdapter(this@GenresView,android.R.layout.simple_list_item_1,DataBase.tableGenre!!.getAll()) }
+            val response = deferred.await()
+            withContext(Dispatchers.Main){
+                if (deferred.isCompleted){
+                    listView.adapter = adapter
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+        }
     }
+
+
 
     fun showSnackbar(text: String){
         Snackbar.make(findViewById(R.id.cl_genres_view),text, Snackbar.LENGTH_LONG)
@@ -99,12 +133,19 @@ class GenresView : AppCompatActivity() {
 
     }
 
-    fun showGenreInfo(index: Int){
+    fun showGenreInfo(id: Int){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Información del Genero")
         builder.setPositiveButton("Volver",null)
-        builder.setMessage(CRUDGenres.get(index).getInfo())
-        val dialogo = builder.create()
-        dialogo.show()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val deferred = async { builder.setMessage(DataBase.tableGenre?.getById(id)?.getInfo()) }
+            val response = deferred.await()
+            withContext(Dispatchers.Main){
+                if(deferred.isCompleted){
+                    val dialogo = builder.create()
+                    dialogo.show()
+                }
+            }
+        }
     }
 }

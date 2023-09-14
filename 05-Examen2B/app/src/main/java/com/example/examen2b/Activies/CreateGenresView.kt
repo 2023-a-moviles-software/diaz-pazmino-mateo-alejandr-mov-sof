@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import com.example.examen2b.CRUD.CRUDGenres
+import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
 import com.google.android.material.snackbar.Snackbar
 
@@ -30,7 +30,7 @@ class CreateGenresView : AppCompatActivity() {
         val ratingText =  findViewById<TextView>(R.id.input_rating_genre_new).text.toString().toDouble()
         val durationText = findViewById<TextView>(R.id.input_duration_genre_new).text.toString().toInt()
         val directorText = findViewById<TextView>(R.id.input_director_genre_new).text.toString()
-        CRUDGenres.create(nameText,ratingText,durationText,directorText)
+        DataBase.tableGenre?.create(nameText,ratingText,durationText,directorText)
     }
 
     fun clearFields(){

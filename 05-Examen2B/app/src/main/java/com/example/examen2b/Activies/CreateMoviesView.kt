@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
-import com.example.examen2b.CRUD.CRUDMovies
+import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
 import com.google.android.material.snackbar.Snackbar
 import java.util.Calendar
@@ -37,14 +37,6 @@ class CreateMoviesView : AppCompatActivity() {
         }
     }
 
-    private fun getTodaysDate(): String {
-        val cal:Calendar = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        var month = cal.get(Calendar.MONTH)
-        month += 1
-        val day = cal.get(Calendar.DAY_OF_MONTH)
-        return makeDateString(day,month,year)
-    }
 
     private fun initDatePicker() {
         val dateSetListener: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener {
@@ -77,7 +69,7 @@ class CreateMoviesView : AppCompatActivity() {
         val dateText = dateButton?.text.toString()
         val scoreText = findViewById<TextView>(R.id.input_score_movie_new).text.toString().toDouble()
         val hasOscarBool = getOscarField()
-        CRUDMovies.create(indexGenre,titleText,runtimeText,dateText,scoreText,hasOscarBool)
+        DataBase.tableMovie?.create(indexGenre,titleText,runtimeText,dateText,scoreText,hasOscarBool)
     }
 
     fun getOscarField():Boolean{
