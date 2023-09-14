@@ -17,7 +17,6 @@ import com.example.examen2b.CRUD.MovieDAO
 import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
 import com.example.examen2b.entities.Genre
-import com.google.android.gms.common.api.Response
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

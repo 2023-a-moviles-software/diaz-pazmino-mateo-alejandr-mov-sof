@@ -1,25 +1,11 @@
 package com.example.examen2b.CRUD
 
-import android.util.Log
-import androidx.lifecycle.Lifecycling
 import androidx.lifecycle.ViewModel
 import com.example.examen2b.entities.Genre
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
-import kotlin.math.E
-import kotlin.time.Duration
-import kotlin.time.ExperimentalTime
-import kotlin.time.measureTime
-import androidx.lifecycle.lifecycleScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.tasks.await
 

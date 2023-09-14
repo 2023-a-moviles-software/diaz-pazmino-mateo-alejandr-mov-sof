@@ -14,7 +14,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.example.examen2b.DB.DataBase
 import com.example.examen2b.R
-import com.example.examen2b.entities.Genre
 import com.example.examen2b.entities.Movie
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
